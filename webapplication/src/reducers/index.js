@@ -7,6 +7,7 @@ import {handleVerifyAccount} from './VerifyAccountRDC'
 import {handleUpdateAccountInformationWhenRegistering} from './UpdateAcountInformationWhenRegistering'
 import {handleEnterCurrentEmail, handleEnterVerifiedPassword , handleEnterNewPassword} from './ForgetPasswordRDC'
 import {handleSwitchWattingToken} from './MainRDC'
+import {handleCreateStore} from './CreateStoreRDC'
 const appReducers = combineReducers ({
     handleProgressBar,
     handleForgetPasswordProgress,
@@ -17,8 +18,7 @@ const appReducers = combineReducers ({
     handleEnterCurrentEmail,
     handleEnterNewPassword,
     handleEnterVerifiedPassword,
-    handleSwitchWattingToken
+    handleSwitchWattingToken,
+    handleCreateStore
 })
-
-
 export default appReducers

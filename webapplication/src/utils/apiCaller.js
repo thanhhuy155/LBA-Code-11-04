@@ -1,15 +1,15 @@
-import axios from 'axios'
+import axios, {post} from 'axios'
 import * as Config from '../constraints/Config'
 
-const callAPI= async (endpoint, method='GET',body) =>{
-    return await axios({
-    // headers:{
-    //     Authorization: localStorage.getItem ('Token')?localStorage.getItem('Token'):null
-    // },
+const callAPI=  (endpoint, method='GET',body) =>{
+    return  axios({
+    headers:{
+        Authorization: localStorage.getItem ('User')?JSON.parse (localStorage.getItem('User')).data.token:null
+    },
     method: method,
     url: `${Config.API_URL}${endpoint}`,
     data: body
-      }).then (async reg=> await reg.data).catch(err=>{
+      }).then ( reg=> {return reg.data}).catch(err=>{
         console.log ('Error from Webservice: ', err)
         return {
                 data:{},
@@ -19,6 +19,30 @@ const callAPI= async (endpoint, method='GET',body) =>{
                 }
             }
     });
+}
+
+export const callAPIForFormData = async(endpoint, formData) =>{
+    try
+    {
+        const url= `${Config.API_URL}${endpoint}`
+        const config = {
+            headers: {
+                Authorization: localStorage.getItem ('User')?JSON.parse (localStorage.getItem('User')).data.token:null,
+                'content-type': 'multipart/form-data',
+            }
+        }
+    const result = await post(url, formData,config)
+    return result.data
+    }
+    catch (err) {
+        return {
+            data:{},
+            message:{
+                success: false,
+                error: 'Something was wrong with Webservice'
+                }
+        }
+    }
 }
 
 export default callAPI;

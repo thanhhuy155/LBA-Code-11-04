@@ -24,11 +24,9 @@ export default class AdminNarbar extends Component {
                             <ul className="nav navbar-nav navbar-right" >
                                 <li><a>Welcome, Harrison</a></li>
                                 <li>
-                                    <Link to="/w/Login">
                                         <a style={{
                                             color: 'white'
-                                        }}>Logout</a>
-                                    </Link></li>
+                                        }} role = "button" onClick = {()=> this.props.onLogout()}>Logout</a></li>
                             </ul>
                         </div>
                     </div>

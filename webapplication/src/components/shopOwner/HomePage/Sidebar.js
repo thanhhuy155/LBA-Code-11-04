@@ -21,25 +21,11 @@ export default class Sidebar extends Component {
                         <div class="profile-usermenu">
                             <Nav activeKey={this.state.TrackPosition} onSelect={this.handleSelect} activeClassName="selected">
 
-                                <NavItem eventKey={2}>
-                                    <Link style={Styles.linkItem} to='/s'><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>&nbsp;<strong>Message</strong></Link>
-                                </NavItem>
-
-                                <NavItem eventKey={3}>
-                                    <NavLink to='/s/StoreManagementPage' style={Styles.linkItem}>
-                                        <i class="glyphicon glyphicon-home" activeClassName="active"></i>
-                                        Store Management
-                                    </NavLink>
-                                </NavItem>
-
-                                <NavItem eventKey={4}>
-                                    <Link style={Styles.linkItem} to={`/s/BudgetManagementPage`}><span class="glyphicon glyphicon-usd" aria-hidden="true"></span>&nbsp;<strong>Budget Management</strong></Link>
-                                </NavItem>
-
+                                <Link className="list-group-item" to='/s'><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>&nbsp;<strong>Message</strong></Link>
+                                <Link className="list-group-item" to={`/s/StoreManagementPage`}><span class="glyphicon glyphicon-home" aria-hidden="true"></span>&nbsp;<strong>Budget Management</strong></Link>
+                                <Link className="list-group-item" to={`/s/BudgetManagementPage`}><span class="glyphicon glyphicon-usd" aria-hidden="true"></span>&nbsp;<strong>Budget Management</strong></Link>
+                                <Link className="list-group-item" to='/s/CreateStorePage'><span class="glyphicon glyphicon-briefcase" aria-hidden="true"></span>&nbsp;<strong>Create Store</strong></Link>
                             
-                                <NavItem eventKey={5}>
-                                    <Link style={Styles.linkItem} to='/s/CreateStorePage'><span class="glyphicon glyphicon-briefcase" aria-hidden="true"></span>&nbsp;<strong>Create Store</strong></Link>
-                                </NavItem>
                             </Nav>
                         </div>
                     </div>

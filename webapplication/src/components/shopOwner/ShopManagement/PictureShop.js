@@ -1,47 +1,32 @@
 import React, { Component } from 'react';
-
+import LoadedImage from './LoadedImage'
 export default class PictureShop extends Component {
     constructor(props) {
         super(props);
-        this.state = { file: '', imagePreviewUrl: 'http://giaiphaptinhhoa.com/wp-content/uploads/2012/11/Blue.jpg' };
-    }
-
-    _handleSubmit(e) {
-        e.preventDefault();
-        console.log('handle uploading-', this.state.file);
-    }
-
-    _handleImageChange(e) {
-        e.preventDefault();
-
-        let reader = new FileReader();
-        let file = e.target.files[0];
-        try {
-            reader.readAsDataURL(file)
-        } catch (e){
-            console.log (e)
+        this.state = {
+            imageArray: ['https://s3-ap-southeast-1.amazonaws.com/capstone2/18-04-10-06-53-56Doraemon_r.png']
         }
-        reader.onloadend = () => {
-            this.setState({
-                file: file,
-                imagePreviewUrl: reader.result
-            });
-        }
-        
-
     }
+
     render() {
-        let { imagePreviewUrl } = this.state;
+        let { imageArray } = this.state;
         return (
             <div>
                 <div className="imgPreview">
-                    <img src={imagePreviewUrl} class="img-responsive" alt="Image"/>
+                    <img src={imageArray.length !== 0 ? imageArray[0]: ''} class="img-responsive" alt="Image" />
                 </div>
-                <form onSubmit={(e) => this._handleSubmit(e)}>
-                    <input className="fileInput"
-                        type="file"
-                        onChange={(e) => this._handleImageChange(e)} />
-                </form>
+                <div style={{ marginTop: 10 }}>
+                    <div class="row">
+
+                        {
+                            imageArray.map((item, index) => {
+                                return( 
+                                    <img src={item} class="img-responsive" alt="Image" style = {{width: 40, height: 40}}/>
+                                )
+                            })
+                        }
+                    </div>
+                </div>
             </div>
         )
     }

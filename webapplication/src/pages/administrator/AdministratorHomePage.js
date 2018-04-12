@@ -7,11 +7,13 @@ import AdminMainPage from './AdminMainPage';
 import PromotionManagementPage from './PromotionManagementPage';
 import ShopOwnerManagementPage from './ShopOwnerManagementPage';
 import CustomerManagementPage from './CustomerManagementPage';
-import { Switch} from 'react-router-dom';
+import { Switch, Redirect} from 'react-router-dom';
 import { Route } from 'react-router-dom';
 import '../../components/admin/adminstyle.css'
 export default class AdminstratorHomePage extends Component {
   render() {
+    if (localStorage.getItem('User'))
+      if (JSON.parse (localStorage.getItem('User')).data.Group_Accounts_Id === 1)
     return (
       <div>
         <AdminNarbarCTT />
@@ -38,5 +40,11 @@ export default class AdminstratorHomePage extends Component {
         </section>
       </div>
     )
+    else{
+      return (<Redirect to={{ pathname: '/' }} />)
+    }
+  else{
+    return (<Redirect to={{ pathname: '/' }} />)
+}
   }
 };

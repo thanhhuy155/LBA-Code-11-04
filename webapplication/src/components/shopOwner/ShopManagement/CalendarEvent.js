@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import BigCalendar from 'react-big-calendar';
 import moment from 'moment';
 import ModalEventDetail from './ModalEventDetail'
+import BigCalendar from 'react-big-calendar'
 import {Link, Redirect} from 'react-router-dom'
 BigCalendar.momentLocalizer(moment);
 
@@ -13,8 +13,8 @@ export default class MyCalendar extends Component {
                 {
                     title: 'Khuyến mãi giá sốc',
                     allDay: true,
-                    start: '2018/03/20',
-                    end: '2018/03/28'
+                    start: '2018/04/06',
+                    end: '2018/04/09'
                 },
 
             ],
@@ -40,6 +40,7 @@ export default class MyCalendar extends Component {
                     turnOffModal={this._turnOffModalEventDetail}
                     />
                 <BigCalendar
+                    defaultDate = {new Date()}
                     events={this.state.events}
                     step={60}
                     onSelectEvent = {(event,e)=>{

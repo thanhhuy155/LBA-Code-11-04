@@ -13,6 +13,7 @@ import ProfilePage from './Profile/ProfilePage'
 import StatisticsPage from './Statistics/StatisticsPage'
 import StoreManagementPage from './StoreManagement/StoreManagementPage'
 import StoreDetailPage from './StoreManagement/StoreDetailPage'
+import WattingModalCTT from '../../constructors/main/WattingModalCTT'
 // Tam thoi
 import ShopDetail from '../../components/shopOwner/ShopManagement/ShopDetail'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
@@ -22,6 +23,7 @@ export default class ShopOwnerHomePage extends Component {
       if (JSON.parse (localStorage.getItem('User')).data.Group_Accounts_Id === 2)
         return (
           <Fragment>
+            <WattingModalCTT />
             <HeaderCTT />  
             <div class="container-fluid">
               <div class="row wrapper-body">
@@ -46,7 +48,7 @@ export default class ShopOwnerHomePage extends Component {
           </Fragment>
         )
         else{
-          return (<Redirect to={{ pathname: '/a' }} />)
+          return (<Redirect to={{ pathname: '/' }} />)
         }
       else{
         return (<Redirect to={{ pathname: '/' }} />)

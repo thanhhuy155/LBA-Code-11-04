@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {checkOnlyLength, checkEndDate, checkStartDate} from '../../../constraints/InputValidation'
-
+import LoadedImage from './LoadedImage'
 export default class ModalCreateEvent extends Component {
     constructor (props)
     {
@@ -29,22 +29,22 @@ export default class ModalCreateEvent extends Component {
 
     _handleImageChange = (e) => {
         e.preventDefault();
-
+        try
+        {
         let reader = new FileReader();
         let file = e.target.files[0];
-
         reader.onloadend = () => {
             this.setState({
-                file: file,
-                imagePreviewUrl: reader.result
-            });
+                imageArray: this.state.imageArray.concat ({file: file, imagePreviewUrl:reader.result})
+                // file: file,
+                // imagePreviewUrl: reader.result
+            })
         }
-
         reader.readAsDataURL(file)
+        } catch (e) {console.log (e)}
     }
 
     _handleSubmit = (e) => {
-        alert ('ds')
         const { txtStartDate,txtCloseDate,txtDescription} = this.state
         this.setState({
             formError:
@@ -71,6 +71,12 @@ export default class ModalCreateEvent extends Component {
                 }
             }
         )
+    }
+
+    _closeImage = (imagePreviewUrl) =>{
+        this.setState ({
+            imageArray: this.state.imageArray.filter ((item) => item.imagePreviewUrl !== imagePreviewUrl)
+        })
     }
     render() {
         return (
@@ -124,10 +130,26 @@ export default class ModalCreateEvent extends Component {
 
                                 <div class="form-group">
                                     <label for="exampleFormControlFile1">Choose Images</label>
-                                    <input type="file" class="form-control-file" id="exampleFormControlFile1" />
+                                    <input
+                                        accept="image/*"
+                                        onChange={(e) => this._handleImageChange(e)} 
+                                        type="file" class="form-control-file" id="exampleFormControlFile1" />
                                 </div>
                             </form>
-
+                            
+                            
+                            <div class="row">
+                                
+                                {
+                                    this.state.imageArray.map ((item, index)=>{
+                                        return <LoadedImage 
+                                            _closeImage = {this._closeImage} 
+                                            file ={item.file} 
+                                            imagePreviewUrl = {item.imagePreviewUrl} />
+                                    })
+                                }                      
+                            </div>
+                            
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

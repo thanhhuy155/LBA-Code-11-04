@@ -36,7 +36,7 @@ export default class StoreInformation extends Component {
                 </div>
                 
                 <ModalChangeInformation />
-
+                
             </div>
         )
     }
